@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
-
+{%- block stylesheet -%}<link rel="stylesheet" href="Stylesheets/base.css">{%- endblock -%}
 {%- block content -%}
     {%- for image in images +%}
-        <p>{{image.ID}}. <a href="i/{{image.ID}}.html">{{image.Artist}} - {{image.Year}}</a></p>
+        <a href="i/{{image.ID}}.html"><p class="paragraph">{{image.ID}}. {{image.Artist}} - {{image.Year}}</p></a>
     {%- endfor +%}
 {%- endblock -%}

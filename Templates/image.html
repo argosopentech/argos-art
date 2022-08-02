@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
-
+{%- block stylesheet -%}<link rel="stylesheet" href="../Stylesheets/base.css">{%- endblock -%}
 {% block content %}
         <img src="../Images/{{image.ID}}.jpg">
-        <h2>{{title}}</h2>
-        <b>Keywords: {{image.Keywords}}</b>
+        <h2 class="large-header">{{title}}</h2>
+        <h4 class="keywords"><b class="header">Keywords:</b>{{image.Keywords}}</h4>
         {%- for key, value in image.items() +%}
         {%- if key == "Redbubble URL" +%}
-        <p><a href="{{value}}" target="_blank">Print</a></p>
+        <a href="{{value}}" target="_blank"><button type="button" class="button button-2">Print</button></a>
         {%- endif +%}
         {%- if key == "Short Description" +%}
-        <h4>Description:</h4>
-        <p>{{value}}</p>
+        <h4 class="header">Description:</h4>
+        <p class="paragraph">{{value}}</p>
         {%- endif +%}
         {%- endfor +%}
-        <p><a href="../Images/{{image.ID}}.jpg" target="_blank">Download</a></p>
+        <a href="../Images/{{image.ID}}.jpg" target="_blank"><button type="button" class="button button-1">Download</button></a>
 {% endblock %}

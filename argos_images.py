@@ -1,10 +1,11 @@
-import requests, csv, os, validators, io, click, time, datetime, io, sys
+import requests, csv, os, validators, io, click, time, datetime, io, sys, shutil
 from bs4 import BeautifulSoup
 from PIL import Image
 from jinja2 import Environment, FileSystemLoader
 
 WEBSITE_FOLDER = "Website"
 IMAGES_FOLDER = WEBSITE_FOLDER + "/Images"
+STYLESHEETS_FOLDER = WEBSITE_FOLDER + "/Stylesheets"
 RESCALE_FACTOR = 0.75
 QUALITY_FACTOR = 70
 OPTIMIZE = True
@@ -195,6 +196,11 @@ def make_directories():
     if not os.path.isdir(WEBSITE_FOLDER): os.mkdir(WEBSITE_FOLDER)
     if not os.path.isdir(WEBSITE_FOLDER + "/i"): os.mkdir(WEBSITE_FOLDER + "/i")
     if not os.path.isdir(IMAGES_FOLDER): os.mkdir(IMAGES_FOLDER)
+    #if not os.path.isdir(STYLESHEETS_FOLDER): os.mkdir(STYLESHEETS_FOLDER)
+
+
+def copy_stylesheets():
+    shutil.copytree("Stylesheets", STYLESHEETS_FOLDER)
 
 
 def main():
@@ -207,6 +213,7 @@ def main():
         elif sys.argv[1] == "generate_website":
             print("Generating website...")
             generate_website()
+            copy_stylesheets()
         else:
             print("Invlaid Argument!")
             return
