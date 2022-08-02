@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <img src="../Images/{{image.ID}}.jpg">
-    <h2>{{title}}</h2>
-    <b>Keywords: {{image.Keywords}}</b>
-    {% for key, value in image.items() %}
-        {% if key == "Redbubble URL" %}
-            <p><a href="{{value}}" target="_blank">Print</a></p>
-        {% endif %}
-        {% if key == "Short Description" %}
-            <h4>Description:</h4>
-            <p>{{value}}</p>
-        {% endif %}
-    {% endfor %}
-    <p><a href="../Images/{{image.ID}}.jpg" target="_blank">Download</a></p>
+        <img src="../Images/{{image.ID}}.jpg">
+        <h2>{{title}}</h2>
+        <b>Keywords: {{image.Keywords}}</b>
+        {%- for key, value in image.items() +%}
+        {%- if key == "Redbubble URL" +%}
+        <p><a href="{{value}}" target="_blank">Print</a></p>
+        {%- endif +%}
+        {%- if key == "Short Description" +%}
+        <h4>Description:</h4>
+        <p>{{value}}</p>
+        {%- endif +%}
+        {%- endfor +%}
+        <p><a href="../Images/{{image.ID}}.jpg" target="_blank">Download</a></p>
 {% endblock %}

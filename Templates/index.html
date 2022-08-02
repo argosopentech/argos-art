@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
-{% block content %}
-    {% for image in images %}
+{%- block content -%}
+    {%- for image in images +%}
         <p>{{image.ID}}. <a href="i/{{image.ID}}.html">{{image.Artist}} - {{image.Year}}</a></p>
-    {% endfor %}
-{% endblock %}
+    {%- endfor +%}
+{%- endblock -%}
