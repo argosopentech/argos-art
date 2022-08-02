@@ -196,7 +196,6 @@ def make_directories():
     if not os.path.isdir(WEBSITE_FOLDER): os.mkdir(WEBSITE_FOLDER)
     if not os.path.isdir(WEBSITE_FOLDER + "/i"): os.mkdir(WEBSITE_FOLDER + "/i")
     if not os.path.isdir(IMAGES_FOLDER): os.mkdir(IMAGES_FOLDER)
-    #if not os.path.isdir(STYLESHEETS_FOLDER): os.mkdir(STYLESHEETS_FOLDER)
 
 
 def copy_stylesheets():
