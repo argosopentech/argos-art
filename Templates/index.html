@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {%- block stylesheet -%}<link rel="stylesheet" href="Stylesheets/base.css">{%- endblock -%}
 {%- block content -%}
+     <h1 class="large-header">Argos Images</h1>
     {%- for image in images +%}
         <a href="i/{{image.ID}}.html"><p class="paragraph">{{image.ID}}. {{image.Artist}} - {{image.Year}}</p></a>
     {%- endfor +%}
