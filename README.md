@@ -1,1 +1,1 @@
-# argos-images
+# Argos Art
