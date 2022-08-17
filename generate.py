@@ -4,6 +4,7 @@ import requests, csv, os, validators, io, click, time, datetime, io, sys, shutil
 from bs4 import BeautifulSoup
 from PIL import Image
 from jinja2 import Environment, FileSystemLoader
+import pathlib
 
 WEBSITE_FOLDER = "Website"
 IMAGES_FOLDER = WEBSITE_FOLDER + "/Images"
@@ -174,9 +175,8 @@ def generate_website():
         if not os.path.exists(index_file_name):
             render_index_page(images, index_file_name, env)
         for image in images:
-            image_file_name = WEBSITE_FOLDER + "/i/" + str(image["ID"]) + ".html"
-            if not os.path.exists(image_file_name):
-                render_image_page(image, image_file_name, env)
+            image_dir_name = WEBSITE_FOLDER + "/i/" + str(image["ID"]) 
+            render_image_page(image, image_dir_name, env)
         
 
 def render_index_page(images, file_name, env):
@@ -186,11 +186,13 @@ def render_index_page(images, file_name, env):
         index_file.write(output)
 
 
-def render_image_page(image, file_name, env):
+def render_image_page(image, dir_name, env):
     template = env.get_template('image.html')
     title = str(image["ID"]) + ". " + str(image["Artist"]) + " - " + str(image["Year"])
     output = template.render(title=title, image=image)
-    with open(file_name, 'w', encoding='utf-8') as image_file:
+    image_dir = pathlib.Path(dir_name)
+    image_dir.mkdir(parents=True, exist_ok=True)
+    with open(image_dir / "index.html", 'w', encoding='utf-8') as image_file:
         image_file.write(output)
 
 
