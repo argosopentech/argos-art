@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import requests, csv, os, validators, io, click, time, datetime, io, sys, shutil
 from bs4 import BeautifulSoup
 from PIL import Image
@@ -204,19 +206,9 @@ def copy_stylesheets():
 
 def main():
     make_directories()
-    number_of_arguments = len(sys.argv)
-    if number_of_arguments > 1:
-        if sys.argv[1] == "read_file":
-            print("Reading file...")
-            read_file()
-        elif sys.argv[1] == "generate_website":
-            print("Generating website...")
-            generate_website()
-            copy_stylesheets()
-        else:
-            print("Invlaid Argument!")
-            return
-    else:
-        print("Please provide one of these arguments:\nread_file\ngenerate_website")
+    read_file()
+    generate_website()
+    copy_stylesheets()
 
-main()
+if __name__ == "__main__":
+    main()
