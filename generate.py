@@ -188,14 +188,14 @@ def generate_website():
 def render_homepage(file_name, env):
     file_name = pathlib.Path(file_name)
     template = env.get_template('homepage.html')
-    output = template.render(title='Argos Images')
+    output = template.render(title='Argos Art')
     with open(file_name / "index.html", 'w', encoding='utf-8') as index_file:
         index_file.write(output)
         
 
 def render_index_page(images, file_name, env):
     template = env.get_template('index-page.html')
-    output = template.render(title='Argos Images', images=images)
+    output = template.render(title='Argos Art', images=images)
     with open(file_name, 'w', encoding='utf-8') as index_file:
         index_file.write(output)
 
