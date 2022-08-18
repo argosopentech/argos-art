@@ -171,16 +171,24 @@ def generate_website():
             if not os.path.exists(image_name): continue
             images.append(line)
     if len(images) > 0:
-        index_file_name = WEBSITE_FOLDER + "/index.html"
-        if not os.path.exists(index_file_name):
-            render_index_page(images, index_file_name, env)
+        index_dir = pathlib.Path(WEBSITE_FOLDER) / "index"
+        index_dir.mkdir(parents=True, exist_ok=True)
+        render_index_page(images, index_dir / "index.html", env)
+        render_homepage(WEBSITE_FOLDER, env)
         for image in images:
             image_dir_name = WEBSITE_FOLDER + "/i/" + str(image["ID"]) 
             render_image_page(image, image_dir_name, env)
+
+def render_homepage(file_name, env):
+    file_name = pathlib.Path(file_name)
+    template = env.get_template('homepage.html')
+    output = template.render(title='Argos Images')
+    with open(file_name / "index.html", 'w', encoding='utf-8') as index_file:
+        index_file.write(output)
         
 
 def render_index_page(images, file_name, env):
-    template = env.get_template('index.html')
+    template = env.get_template('index-page.html')
     output = template.render(title='Argos Images', images=images)
     with open(file_name, 'w', encoding='utf-8') as index_file:
         index_file.write(output)
@@ -188,7 +196,7 @@ def render_index_page(images, file_name, env):
 
 def render_image_page(image, dir_name, env):
     template = env.get_template('image.html')
-    title = str(image["ID"]) + ". " + str(image["Artist"]) + " - " + str(image["Year"])
+    title = str(image["Artist"]) + " (" + str(image["Year"]) + ")"
     output = template.render(title=title, image=image)
     image_dir = pathlib.Path(dir_name)
     image_dir.mkdir(parents=True, exist_ok=True)

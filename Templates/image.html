@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
         <h1 class="large-header">{{title}}</h1>
-        <img src="../../Images/{{image.ID}}.jpg">
         {%- for key, value in image.items() +%}
         {%- if key == "Short Description" +%}
         <p class="paragraph">{{value}}</p>
         {%- endif +%}
         {%- endfor +%}
+        <a href="../../Images/{{image.ID}}.jpg" target="_blank">
+                <img src="../../Images/{{image.ID}}.jpg">
+        </a>
         <p class="keywords">Keywords: {{image.Keywords}}</p>
-        <a href="../../Images/{{image.ID}}.jpg" target="_blank"><button type="button" class="button button-1">Download</button></a>
 {% endblock %}
