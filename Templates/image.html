@@ -1,18 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-        <h1 class="large-header">{{title}}</h1>
-        {%- for key, value in image.items() +%}
-        {%- if key == "Short Description" +%}
-        <p class="paragraph">{{value}}</p>
-        {%- endif +%}
-        {%- endfor +%}
-        <style>
-                img {
-                        max-height: 1000px;
-                }
-        </style>
-        <a href="../../Images/{{image.ID}}.jpg" target="_blank">
-                <img src="../../Images/{{image.ID}}.jpg">
-        </a>
-        <p class="keywords">Keywords: {{image.Keywords}}</p>
+<div class="container">
+        <div class="row">
+                <div class="eight columns">
+                        <h1 class="large-header">{{title}}</h1>
+                        {%- for key, value in image.items() +%}
+                        {%- if key == "Short Description" +%}
+                        <p class="paragraph">{{value}}</p>
+                        {%- endif +%}
+                        {%- endfor +%}
+                </div>
+        </div>
+        <div class="row">
+                <div class="eight columns">
+                        <style>
+                                img {
+                                        max-width: 100%;
+                                }
+                        </style>
+                        <a href="/Images/{{image.ID}}.jpg" target="_blank">
+                                <img src="/Images/{{image.ID}}.jpg" alt="{{title}}">
+                        </a>
+                </div>
+        </div>
+        <div class="row">
+                <div class="eight columns">
+                        <p class="keywords">Keywords: {{image.Keywords}}</p>
+                </div>
+        </div>
+</div>
 {% endblock %}

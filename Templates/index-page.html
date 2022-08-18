@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {%- block content -%}
-    <h1 class="large-header">Argos Images</h1>
+    <a href="/"><h1 class="large-header">Argos Art</h1></a>
     <ul>
         {%- for image in images +%}
-            <li><a href="../i/{{image.ID}}/">{{image.ID}}. {{image.Artist}}  ({{image.Year}})</a></li>
+            <li><a href="/i/{{image.ID}}/">{{image.ID}}. {{image.Artist}}  ({{image.Year}})</a></li>
         {%- endfor +%}
     </ul>
 {%- endblock -%}
