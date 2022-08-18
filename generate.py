@@ -82,10 +82,14 @@ def save_image(image_url, image_name, log_data):
         log_data["Message"] += "Image Name:\n" + image_name + "\nImage URL:" + image_url + "\n"
         return False
     image_size = [image.size[0], image.size[1]]
+    
+    """
     while max(image_size[0], image_size[1]) > MAX_PIXEL_SIZE:
         image_size[0] = int(image_size[0] * RESCALE_FACTOR)
         image_size[1] = int(image_size[1] * RESCALE_FACTOR)
     image.thumbnail((image_size[0], image_size[1]), Image.Resampling.LANCZOS)
+   """
+
     if not image:
         log_data["Message"] = "Image = None!\nName:\n" + image_name + "\nURL:\n" + image_url + "\n"
         return True
@@ -116,6 +120,8 @@ def read_file():
             image_url = str(line['Wikimedia']).replace("\t", "").replace(" ", "")
             if image_url.startswith("//"):
                 image_url = image_url.replace("//", "https://", 1)
+            if str(line["URL"]).startswith("https://upload.wikimedia.org/wikipedia/commons"):
+                image_url = str(line["URL"])
             image_path = IMAGES_FOLDER + "/" + image_name
             print_progress(started_at_seconds, index, csv_size, starting_time, image_name, image_url)
             log_data["Error"] = download_image(image_url, image_path, log_data)
