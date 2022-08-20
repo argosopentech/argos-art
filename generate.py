@@ -124,11 +124,14 @@ def read_file():
                 image_url = str(line["URL"])
             image_path = IMAGES_FOLDER + "/" + image_name
             print_progress(started_at_seconds, index, csv_size, starting_time, image_name, image_url)
-            log_data["Error"] = download_image(image_url, image_path, log_data)
+            try:
+                log_data["Error"] = download_image(image_url, image_path, log_data)
+            except:
+                continue
             if log_data["Error"]:
                 print("Log Data:\n", log_data["Message"])
                 log_file.write(log_data["Message"])
-                return
+                continue
             time.sleep(0.025)
             index += 1
 
