@@ -1,6 +1,6 @@
 # Argos Art
 
-Free public domain art
+Argos Art is an open source index and archive of over ten thousand paintings.
 
 - [Data](https://github.com/argosopentech/public-domain-art)
 
